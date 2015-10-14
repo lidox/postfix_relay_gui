@@ -33,9 +33,9 @@ function getLogRecordsByFilename(fileName){
 	for(i in array) {
 		var parsedObject = parser.asObject(array[i]);
 		try {
-			if(parsedObject.prog!='postfix/smtpd'){
+			/*if(parsedObject.prog!='postfix/smtpd'){*/
 				logRecords.push(parsedObject);
-		    }
+		    /*}*/
 		}
 		catch(err) {
 			console.log('could not parse a line')
