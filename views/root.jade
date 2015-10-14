@@ -3,6 +3,7 @@ html(lang="de")
   head
     link(rel="stylesheet", type="text/css", href="/css/styles.css")
     link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/css/normalize.css")
     meta(charset="UTF-8")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title HHU MAIL REALY
@@ -46,25 +47,25 @@ html(lang="de")
                 script.
                   var logRecords = !{logRecords};
                 ul
-                  for item in logRecords
+                  for item in logRecords.reverse()
                     tr
-                      th(scope="row")= item.qid
+                      td(scope="row")= item.qid
                       //-th= item.size
-                      th= item.date
+                      td= item.date
                       //-th= item.host
-                      th= item.from
-                      th= item.pid
-                      th= item.to
-                      th= item.relay
-                      th= item.delay
-                      th= item.delays
-                      th= item.dsn
-                      th= item.status
+                      td= item.from
+                      td= item.pid
+                      td= item.to
+                      td= item.relay
+                      td= item.delay
+                      td= item.delays
+                      td= item.dsn
+                      td= item.status
                       //-th= item.message-id
                       //-th= item.dsnQid
                       //-th= item.statistics
                       //-th= item.uid
-                      th= item.prog                      
+                      td= item.prog                      
                       //-th= item.forwardedAs
       .scope
       .footer
