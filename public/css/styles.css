@@ -1,0 +1,19 @@
+h1 {
+	text-align: center;
+}
+.inhalt{
+	padding-right: 1.1%;
+	padding-left: 1.2%;
+}
+.navbar{
+	background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+	margin-left: 0.1%;
+	margin-right: 0.1%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+.mycontainer{
+	width: 90%;
+    margin: 0 auto;
+}
