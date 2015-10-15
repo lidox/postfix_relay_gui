@@ -1,25 +1,36 @@
 var express = require('express');
-var data =  require('./data');
 var app = express();
 var parser = require('postfix-parser');
 console.log('mail relay server started');
+var smtpdList = [];
+
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+
+// Routes
+var index = require(__dirname + '/routes/index');
+var errors = require(__dirname + '/routes/errors');
+
+// Routen Middleware
+//app.use('/errors', errors);
+//app.use('/', index);
+
+
+
 app.get('/', function(req, res){
 	var logRecords = getLogRecordsByFilename('mail.log');
-	renderPageByData(logRecords,'root.jade', res);
+	res.render('root.jade', {logRecords:logRecords});
+	smtpdList = [];
 });
 
-app.get('/errors', function(req, res){
-	var logRecords = getLogRecordsByFilename('mail.err.1');
-	renderPageByData(logRecords,'errors.jade', res);
+app.get('/fehler', function(req, res){
+	var logRecords = getLogRecordsByFilename('mail.log');
+	res.render('fehler.jade', {smtpdList:smtpdList});
+	smtpdList = [];
 });
 
-app.get('/howto', function(req, res){
-	
-	console.log('how gestartet');
-	res.writeHead(200, {'Content-Tye' : 'text/html; charset=utf-8'});
-	var body = data.teams[0].name;
-	res.end(body);
-});
+
 
 function getLogRecordsByFilename(fileName){
 	console.log('getLogRecordsByFilename() started');
@@ -31,26 +42,38 @@ function getLogRecordsByFilename(fileName){
 	/*var array = fs.readFileSync(appRoot+'/../../../var/log/'+fileName).toString().split("\n");*/
 	var array = fs.readFileSync(appRoot+'/../log/'+fileName).toString().split("\n");
 	for(i in array) {
-		var parsedObject = parser.asObject(array[i]);
 		try {
-			/*if(parsedObject.prog!='postfix/smtpd'){*/
-				logRecords.push(parsedObject);
-		    /*}*/
+			var parsedObject = parser.asObject(array[i]);
+			if(parsedObject.prog!='postfix/smtpd'){
+				logRecords.push(parsedObject);	
+		    }
+			else{
+				smtpdList.push(array[i]);
+			}
 		}
 		catch(err) {
-			console.log('could not parse a line')
+			smtpdList.push(array[i]);
+			//console.log('could not parse a line: '+array[i])
 		}
 	}
-	console.log(logRecords.length +' records has been read! :)');
+	console.log(logRecords.length +' records and '+smtpdList.length+' errors has been read!');
 	console.log('getLogRecordsByFilename() finished');
 	return logRecords;
 }
 
-function renderPageByData(logRecords, pageName, res){
-	app.set('view engine', 'jade');
-	app.set('views', __dirname + '/views');
-    app.use(express.static(__dirname + '/public'));
-	res.render(pageName, {logRecords:logRecords});
+function containsUselessWord(logLine){
+	var uselessWords = [];
+	uselessWords.push('disconnect from');
+	uselessWords.push('connect from');
+	uselessWords.push('client=unknown');
+	
+	for(i in array) {
+		if (logLine.indexOf(uselessWords[i]) !=-1){
+			return true;
+		}
+	}
+	return false;
 }
+
 
 app.listen(1337);

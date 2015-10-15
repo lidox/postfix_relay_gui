@@ -1,0 +1,37 @@
+doctype html
+html(lang="de")
+  head
+    link(rel="stylesheet", type="text/css", href="/css/styles.css")
+    link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/css/normalize.css")
+    meta(charset="UTF-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title HHU MAIL REALY
+  body
+    h1 HHU Mail-Relay!
+    
+    .mycontainer
+      .navbar
+        .nav-pills
+          ul.nav.nav-pills
+            li
+              a(href="/") Alle Logmeldungen
+            li
+               a(href="/fehler") Fehlermeldungen
+            //li
+              //a(href="#warnings") Warnungen
+          .inhalt 
+            h3 Fehlermeldungen:
+            table.table.table-striped
+              thead
+                tr
+                  th Meldung
+              tbody
+                script.
+                  var smtpdList = !{smtpdList};
+                ul
+                  for item in smtpdList.reverse()
+                    tr
+                      td= item
+      .scope
+      .footer
