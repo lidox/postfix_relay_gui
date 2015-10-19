@@ -1,3 +1,4 @@
+// layout.jade
 doctype html
 html(lang="de")
   head
@@ -9,15 +10,4 @@ html(lang="de")
     title HHU MAIL REALY
   body
     h1 HHU Mail-Relay!
-    
-    .mycontainer
-      .navbar
-        .nav-pills
-          ul.nav.nav-pills
-            li
-              a(href="/") Erfolgreiche Mails
-            li
-              a(href="/errors") Fehlgeschlagene Mails
-          .inhalt
-		    block content
-			   
+    block content		   

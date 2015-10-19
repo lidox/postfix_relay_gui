@@ -30,6 +30,12 @@ app.get('/fehler', function(req, res){
 	smtpdList = [];
 });
 
+app.get('/test', function(req, res){
+	var logRecords = getLogRecordsByFilename('mail.log');
+	res.render('test.jade', {smtpdList:smtpdList});
+	smtpdList = [];
+});
+
 
 
 function getLogRecordsByFilename(fileName){
