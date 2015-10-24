@@ -7,9 +7,22 @@ html(lang="de")
     meta(charset="UTF-8")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title HHU MAIL REALY
+    if showTests
+       link(rel="stylesheet", type="text/css", href="/external/mocha.css")
   body
     h1 HHU Mail-Relay!
-    
+    if showTests
+      #mocha
+      script(src='/external/mocha.js')
+      script(src='/external/chai.js')
+      script.
+        mocha.ui('tdd');
+        var assert = chai.assert;
+      script(src='/tests/global.js')
+      if testScript
+        script(src='#{testScript}')
+      script.
+        mocha.run();
     .mycontainer
       .navbar
         .nav-pills

@@ -16,11 +16,16 @@ var errors = require(__dirname + '/routes/errors');
 //app.use('/errors', errors);
 //app.use('/', index);
 
-
+//Tests
+app.use(function(req, res, next){
+    res.locals.showTests = app.get('env') !== 'production' &&
+    req.query.t === '1';
+    next();
+});
 
 app.get('/', function(req, res){
 	var logRecords = getLogRecordsByFilename('mail.log');
-	res.render('root.jade', {logRecords:logRecords});
+	res.render('root.jade', {testScript:'tests/posts.js',logRecords:logRecords});
 	smtpdList = [];
 });
 
