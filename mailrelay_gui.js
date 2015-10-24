@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
 var parser = require('postfix-parser');
-console.log('mail relay server started');
+console.log('mail relay server started! ;)');
 var smtpdList = [];
 
-app.set('view engine', 'jade');
+app.set('view engine', 'jade'); 
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
