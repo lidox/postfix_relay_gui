@@ -1,20 +1,25 @@
 var express = require('express');
 var app = express();
-var parser = require('postfix-parser');
+//var parser = require('postfix-parser');
 console.log('mail relay server started! ;)');
-var smtpdList = [];
+//var smtpdList = [];
 
+// view engine
 app.set('view engine', 'jade'); 
 app.set('views', __dirname + '/views');
+
+// middleware
 app.use(express.static(__dirname + '/public'));
 
-// Routes
+// define routes
 var index = require(__dirname + '/routes/index');
 var errors = require(__dirname + '/routes/errors');
+var test2 = require(__dirname + '/routes/test2');
 
-// Routen Middleware
-//app.use('/errors', errors);
-//app.use('/', index);
+// routen middleware
+app.use('/', index);
+app.use('/errors', errors);
+app.use('/test2', test2);
 
 //Tests
 app.use(function(req, res, next){
@@ -23,7 +28,8 @@ app.use(function(req, res, next){
     next();
 });
 
-app.get('/', function(req, res){
+// NOTE: you cannot use routes and app.get() methods at the same time...
+/*app.get('/', function(req, res){
 	var logRecords = getLogRecordsByFilename('mail.log');
 	res.render('root.jade', {testScript:'tests/posts.js',logRecords:logRecords});
 	smtpdList = [];
@@ -39,7 +45,7 @@ app.get('/test', function(req, res){
 	var logRecords = getLogRecordsByFilename('mail.log');
 	res.render('test.jade', {smtpdList:smtpdList});
 	smtpdList = [];
-});
+});*/
 
 
 
