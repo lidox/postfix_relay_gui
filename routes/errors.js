@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var getLogRecordsByFilename = require('../lib/parser').getLogRecordsByFilename;
+var logRecords = require('../lib/parser').getLogRecordsByFilename('mail.log');
+
+
 
 router.get('/', function(req, res) {
-	var logRecords = getLogRecordsByFilename('mail.log');
 	res.render('errors', {logRecords:logRecords});
 });
 
