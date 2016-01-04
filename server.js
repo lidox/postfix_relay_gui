@@ -3,7 +3,7 @@ var app = express();
 var serverport = 1337;
 //var parser = require('postfix-parser');
 console.log('mail relay server started! ;) listen on port '+serverport);
-//var smtpdList = [];
+
 
 // view engine
 app.set('view engine', 'jade'); 

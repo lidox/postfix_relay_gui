@@ -1,50 +1,50 @@
-  extends layouts/layout.jade
-    block content
-              h3 Fehlgeschlagene E-Mails:
-				table.table.table-striped
-				  thead
-					tr
-					  th qid
-					  //-th size
-					  th date
-					  //-th host
-					  th from
-					  th pid
-					  th to
-					  th relay
-					  th delay
-					  th delays
-					  th dsn
-					  th status
-					  //-th message-id
-					  //-th dsnQid
-					  //-th statistics
-					  //-th uid
-					  th prog
-					  //-th forwardedAs
-				  tbody
-					script.
-					  var logRecords = !{logRecords};
-					ul
-					  for item in logRecords
-						tr
-						  th(scope="row")= item.qid
-						  //-th= item.size
-						  th= item.date
-						  //-th= item.host
-						  th= item.from
-						  th= item.pid
-						  th= item.to
-						  th= item.relay
-						  th= item.delay
-						  th= item.delays
-						  th= item.dsn
-						  th= item.status
-						  //-th= item.message-id
-						  //-th= item.dsnQid
-						  //-th= item.statistics
-						  //-th= item.uid
-						  th= item.prog                      
-						  //-th= item.forwardedAs
-		  .scope
-		  .footer
+extends layouts/layout.jade
+block content
+   h3 Fehlgeschlagene E-Mails:
+   table.table.table-striped
+     thead
+       tr
+         th qid
+         //-th size
+         th date
+         //-th host
+         th from
+         th pid
+         th to
+         th relay
+         th delay
+         th delays
+         th dsn
+         th status
+         //-th message-id
+         //-th dsnQid
+         //-th statistics
+         //-th uid
+         th prog
+         //-th forwardedAs
+       tbody
+         script.
+           var logRecords = !{logRecords};
+         ul
+           for item in logRecords
+             tr
+               th(scope="row")= item.qid
+               //-th= item.size
+               th= item.date
+               //-th= item.host
+               th= item.from
+               th= item.pid
+               th= item.to
+               th= item.relay
+               th= item.delay
+               th= item.delays
+               th= item.dsn
+               th= item.status
+               //-th= item.message-id
+               //-th= item.dsnQid
+               //-th= item.statistics
+               //-th= item.uid
+               th= item.prog                      
+               //-th= item.forwardedAs
+        .scope
+        .footer
