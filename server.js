@@ -81,3 +81,8 @@ function containsUselessWord(logLine){
 
 
 app.listen(serverport);
+
+// start db from: https://www.mongodb.org/downloads#production
+// mongod.exe --dbpath="D:\projekte\mailrelay\mongodb-win32-x86_64-3.2.0\db"
+
+// npm install mongoose --save
