@@ -1,11 +1,14 @@
 extends layouts/layout.jade
 block content
    h3 Fehlgeschlagene E-Mails:
-   //if portsToDisplay.lenght > 0
    for item in portsToDisplay
      p #{item.port}
-   //else
-   // h3 MAN! :(
+     form(method='post', action='/errors/addport')
+      input(hidden, name='id', value='#{item.id}')
+      .input-group
+         .input-group-btn
+           input.form-control(type='text', name='port', placeholder='123')
+      input(type='submit', style='display: none;')
    table.table.table-striped
      thead
        tr

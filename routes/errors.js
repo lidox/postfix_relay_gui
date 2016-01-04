@@ -20,4 +20,16 @@ router.get('/', function (req, res) {
 	});
 });
 
+router.post('/addport', function (req, res) {
+	// npm install body-parser --save
+	var port = 
+	{
+		id : "2",
+		port : req.body.port
+	};
+	
+	portsToDisplay.push(port);
+	res.redirect('/errors');
+});
+
 module.exports = router;

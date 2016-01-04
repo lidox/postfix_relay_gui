@@ -1,10 +1,16 @@
 var express = require('express');
 var app = express();
 var serverport = 1337;
+var bodyParser = require('body-parser');
 //var parser = require('postfix-parser');
 app.locals.pretty = true;
 console.log('mail relay server started! ;) listen on port '+serverport);
 
+//body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 // view engine
 app.set('view engine', 'jade'); 
@@ -29,27 +35,6 @@ app.use(function(req, res, next){
     req.query.t === '1';
     next();
 });
-
-// NOTE: you cannot use routes and app.get() methods at the same time...
-/*app.get('/', function(req, res){
-	var logRecords = getLogRecordsByFilename('mail.log');
-	res.render('root.jade', {testScript:'tests/posts.js',logRecords:logRecords});
-	smtpdList = [];
-});
-
-app.get('/fehler', function(req, res){
-	var logRecords = getLogRecordsByFilename('mail.log');
-	res.render('fehler.jade', {smtpdList:smtpdList});
-	smtpdList = [];
-});
-
-app.get('/test', function(req, res){
-	var logRecords = getLogRecordsByFilename('mail.log');
-	res.render('test.jade', {smtpdList:smtpdList});
-	smtpdList = [];
-});*/
-
-
 
 function getLogRecordsByFilename(fileName){
 	console.log('getLogRecordsByFilename() started');
