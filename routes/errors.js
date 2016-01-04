@@ -1,34 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var logRecords = require('../lib/parser').getLogRecordsByFilename('mail.log');
-var cars = ["Saab", "Volvo", "BMW"];
-var portsToDisplay = [
-	{
-		id : "1",
-		port : "443"
-	},
-	{
-		id : "2",
-		port : "993"
-	}
-];
+var controller = require('../controllers/errorsController.js');
+
 
 router.get('/', function (req, res) {
 	res.render('errors', {
 		logRecords : logRecords,
-		portsToDisplay : portsToDisplay
+		portsToDisplay : controller.getPorts()
 	});
 });
 
 router.post('/addport', function (req, res) {
-	// npm install body-parser --save
-	var port = 
-	{
-		id : "2",
-		port : req.body.port
-	};
-	
-	portsToDisplay.push(port);
+	controller.addPort("3", req.body.port);
 	res.redirect('/errors');
 });
 
