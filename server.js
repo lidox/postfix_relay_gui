@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var serverport = 1337;
 //var parser = require('postfix-parser');
+app.locals.pretty = true;
 console.log('mail relay server started! ;) listen on port '+serverport);
 
 

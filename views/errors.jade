@@ -1,6 +1,11 @@
 extends layouts/layout.jade
 block content
    h3 Fehlgeschlagene E-Mails:
+   //if portsToDisplay.lenght > 0
+   for item in portsToDisplay
+     p #{item.port}
+   //else
+   // h3 MAN! :(
    table.table.table-striped
      thead
        tr
@@ -23,8 +28,6 @@ block content
          th prog
          //-th forwardedAs
        tbody
-         script.
-           var logRecords = !{logRecords};
          ul
            for item in logRecords
              tr
@@ -47,4 +50,4 @@ block content
                th= item.prog                      
                //-th= item.forwardedAs
         .scope
-        .footer
+      .footer
