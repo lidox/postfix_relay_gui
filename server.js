@@ -1,4 +1,6 @@
 var express = require('express');
+var mongo_express = require('mongo-express/middleware');
+var mongo_express_config = require('./mongo_express_config');
 var app = express();
 var serverport = 1337;
 var bodyParser = require('body-parser');
@@ -18,6 +20,7 @@ app.set('views', __dirname + '/views');
 
 // middleware
 app.use(express.static(__dirname + '/public'));
+app.use('/mongo', mongo_express(mongo_express_config));
 
 // define routes
 var index = require(__dirname + '/routes/index');
